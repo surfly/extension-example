@@ -1,0 +1,20 @@
+<form id="url-form" onsubmit="goTo(); return false">
+    <input type="url" name="url" id="url" placeholder="Enter URL" />
+</form>
+
+<script>
+    function goTo() {
+        const url = document.getElementById('url').value;
+        surflyExtension.surflySession.apiRequest({
+            cmd: 'relocate',
+            url,
+            newTab: false,
+        });
+    }
+
+    surflyExtension.runtime.onMessage.addListener((message, sender) => {
+        if (message?.event_type === 'relocated_propagated') {
+            console.log('newtab received relocated propagated message', message);
+        }
+    });
+</script>

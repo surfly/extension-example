@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <title>Popup</title>
+    </head>
+    <body>
+        <script>
+            surflyExtension.runtime.onMessage.addListener((message, sender) => {
+                if (message?.event_type === 'relocated_propagated') {
+                    console.log('popup received relocated propagated message', message);
+                }
+            });
+        </script>
+    </body>
+</html>
